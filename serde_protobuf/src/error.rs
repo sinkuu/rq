@@ -15,6 +15,7 @@ pub enum Error {
     UnknownEnum(String),
     UnknownEnumValue(i32),
     UnknownMessage(String),
+    UnexpectedType,
     BadWireType(wire_format::WireType),
     BadDefaultValue(String),
     Custom(String),
@@ -28,6 +29,7 @@ impl fmt::Display for Error {
             Error::UnknownEnum(ref e) => write!(f, "unknown enum: {:?}", e),
             Error::UnknownEnumValue(v) => write!(f, "unknown enum value: {:?}", v),
             Error::UnknownMessage(ref m) => write!(f, "unknown message: {:?}", m),
+            Error::UnexpectedType => write!(f, "unexpected type"),
             Error::BadWireType(wt) => write!(f, "bad wire type: {:?}", wt),
             Error::BadDefaultValue(ref d) => write!(f, "bad default value: {:?}", d),
             Error::Custom(ref m) => write!(f, "error: {}", m),
@@ -43,6 +45,7 @@ impl error::Error for Error {
             Error::UnknownEnum(_) => "unknown enum",
             Error::UnknownEnumValue(_) => "unknown enum value",
             Error::UnknownMessage(_) => "unknown message",
+            Error::UnexpectedType => "unexpected type",
             Error::BadWireType(_) => "bad wire type",
             Error::BadDefaultValue(_) => "bad default value",
             Error::Custom(ref m) => m,
@@ -59,6 +62,14 @@ impl serde::Error for Error {
 
     fn end_of_stream() -> Error {
         Error::EndOfStream
+    }
+}
+
+impl serde::ser::Error for Error {
+    fn custom<S>(msg: S) -> Error
+        where S: Into<String>
+    {
+        Error::Custom(msg.into())
     }
 }
 

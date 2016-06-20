@@ -267,11 +267,17 @@ pub enum InternalFieldType {
     SInt64,
 }
 
+#[derive(Debug, Default)]
+pub struct FieldOptions {
+    pub packed: bool
+}
+
 /// A descriptor for a single protocol buffer message field.
 #[derive(Debug)]
 pub struct FieldDescriptor {
     name: String,
     number: i32,
+    options: FieldOptions,
     field_label: FieldLabel,
     field_type: InternalFieldType,
     default_value: Option<value::Value>,
@@ -610,6 +616,7 @@ impl InternalFieldType {
 impl FieldDescriptor {
     pub fn new<S>(name: S,
                   number: i32,
+                  options: FieldOptions,
                   field_label: FieldLabel,
                   field_type: InternalFieldType,
                   default_value: Option<value::Value>)
@@ -619,6 +626,7 @@ impl FieldDescriptor {
         FieldDescriptor {
             name: name.into(),
             number: number,
+            options: options,
             field_label: field_label,
             field_type: field_type,
             default_value: default_value,
@@ -628,6 +636,9 @@ impl FieldDescriptor {
     pub fn from_proto(proto: &descriptor::FieldDescriptorProto) -> FieldDescriptor {
         let name = proto.get_name().to_owned();
         let number = proto.get_number();
+        let options = FieldOptions {
+            packed: proto.get_options().get_packed()
+        };
         let field_label = FieldLabel::from_proto(proto.get_label());
         let field_type = InternalFieldType::from_proto(proto.get_field_type(),
                                                        proto.get_type_name());
@@ -638,7 +649,7 @@ impl FieldDescriptor {
             None
         };
 
-        FieldDescriptor::new(name, number, field_label, field_type, default_value)
+        FieldDescriptor::new(name, number, options, field_label, field_type, default_value)
     }
 
     #[inline]
@@ -993,7 +1004,7 @@ mod test {
                  45);
 
 
-    check_field!(repppeated_message_field,
+    check_field!(repeated_message_field,
                  ".protobuf_unittest.TestAllTypes",
                  "repeated_foreign_message",
                  Message(..),
