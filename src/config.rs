@@ -14,6 +14,11 @@ pub struct Paths {
     data_dirs: Vec<path::PathBuf>,
 }
 
+pub struct Config {
+    write_path: path::PathBuf,
+    read_paths: Vec<path::PathBuf>,
+}
+
 impl Paths {
     pub fn new() -> error::Result<Paths> {
         fn resolve(mut p: path::PathBuf) -> path::PathBuf {
@@ -67,6 +72,22 @@ impl Paths {
     }
 }
 
+impl Config {
+    pub fn new(paths: &Paths) -> error::Result<Config> {
+        let write = paths.preferred_config("rq.conf");
+        let mut read = try!(paths.find_config("rq.conf"));
+        read.push(write.clone());
+
+        Ok(Config {
+            read_paths: read,
+            write_path: write,
+        })
+    }
+
+    pub fn get(key: &str) -> String {
+
+    }
+}
 
 fn find<P>(home: &path::Path, dirs: &[P], pattern: &str) -> error::Result<Vec<path::PathBuf>>
     where P: AsRef<path::Path>

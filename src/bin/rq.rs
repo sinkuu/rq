@@ -35,6 +35,8 @@ Usage:
   rq (--help|--version)
   rq [-j|-c|-p <type>] [-J|-C|-P <type>] [-l <spec>|-q] [-t] [--] [<query>]
   rq [-l <spec>|-q] [-t] protobuf add <schema> [--base <path>]
+  rq [-l <spec>|-q] [-t] config <key> <value>
+  rq [-l <spec>|-q] [-t] config <key>
 
 Options:
   --help
@@ -69,17 +71,16 @@ Options:
   -l <spec>, --log <spec>
       Configure logging using the supplied specification, in the format of
       `env_logger`.  See: https://doc.rust-lang.org/log/env_logger
-
   -t, --trace
       Enable (back)trace output on error.
-
   -q, --quiet
       Log nothing (alias for '-l off').
 "),
         flag_input_protobuf: Option<String>,
         flag_output_protobuf: Option<String>,
         flag_log: Option<String>,
-        flag_base: Option<String>);
+        flag_base: Option<String>,
+        arg_value: Option<String>);
 
 fn main() {
     let args: Args = Args::docopt()
@@ -106,6 +107,12 @@ fn main_with_args(args: &Args) -> rq::error::Result<()> {
             rq::proto_index::add_file(&paths, base, schema)
         } else {
             unreachable!()
+        }
+    } else if args.cmd_config {
+        if let Some(ref value) = args.value {
+            Ok(())
+        } else {
+            Ok(())
         }
     } else {
         run(&args, &paths)
@@ -158,6 +165,9 @@ fn run_source_sink<I, O>(args: &Args,
     use record_query::value::Source;
 
     let query = rq::query::Query::parse(if args.arg_query.is_empty() {
+        warn!("You are running rq without any arguments, which puts it in pass-through mode.");
+        warn!("See 'rq --help' for more information");
+        warn!("Use 'rq id' to suppress this warning");
         "id"
     } else {
         &args.arg_query
