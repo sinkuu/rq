@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["Schema",""],["SchemaRef",""]],"struct":[["EMPTY_REGISTRY",""],["EnumSchema",""],["FILE_HEADER",""],["FieldSchema",""],["FixedSchema",""],["RecordFields",""],["RecordSchema",""],["SchemaId",""],["SchemaRegistry",""]]});

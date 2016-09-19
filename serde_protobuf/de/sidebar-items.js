@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Deserializer","A deserializer that can deserialize a single message type."]]});

@@ -1,0 +1,1 @@
+initSidebarItems({"mod":[["de","Deserialization of binary protocol buffer encoded data."],["descriptor","Dynamic descriptors for protocol buffer schemata."],["error",""],["value",""]]});

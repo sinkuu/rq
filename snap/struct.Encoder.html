@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `Encoder` struct in crate `snap`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, Encoder">
+
+    <title>snap::Encoder - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='index.html'>snap</a></p><script>window.sidebarCurrent = {name: 'Encoder', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content struct">
+<h1 class='fqn'><span class='in-band'>Struct <a href='index.html'>snap</a>::<wbr><a class='struct' href=''>Encoder</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a id='src-36' class='srclink' href='../src/snap/compress.rs.html#65-68' title='goto source code'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct Encoder {
+    // some fields omitted
+}</pre><div class='docblock'><p>Encoder is a raw encoder for compressing bytes in the Snappy format.</p>
+
+<p>Thie encoder does not use the Snappy frame format and simply compresses the
+given bytes in one big Snappy block (that is, it has a single header).</p>
+
+<p>Unless you explicitly need the low-level control, you should use <code>Writer</code>
+instead, which compresses to the Snappy frame format.</p>
+
+<p>It is beneficial to reuse an Encoder.</p>
+</div><h2 id='methods'>Methods</h2><h3 class='impl'><span class='in-band'><code>impl <a class='struct' href='../snap/struct.Encoder.html' title='snap::Encoder'>Encoder</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-40' class='srclink' href='../src/snap/compress.rs.html#70-165' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.new' class='method'><code>fn <a href='#method.new' class='fnname'>new</a>() -&gt; <a class='struct' href='../snap/struct.Encoder.html' title='snap::Encoder'>Encoder</a></code></h4>
+<div class='docblock'><p>Return a new encoder that can be used for compressing bytes.</p>
+</div><h4 id='method.compress' class='method'><code>fn <a href='#method.compress' class='fnname'>compress</a>(&amp;mut self, input: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>&amp;[</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>]</a>, output: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>&amp;mut [</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>]</a>) -&gt; <a class='type' href='../snap/type.Result.html' title='snap::Result'>Result</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.usize.html'>usize</a>&gt;</code></h4>
+<div class='docblock'><p>Compresses all bytes in <code>input</code> into <code>output</code>.</p>
+
+<p><code>input</code> can be any arbitrary sequence of bytes.</p>
+
+<p><code>output</code> must be large enough to hold the maximum possible compressed
+size of <code>input</code>, which can be computed using <code>max_compress_len</code>.</p>
+
+<p>On success, this returns the number of bytes written to <code>output</code>.</p>
+
+<h1 id='errors' class='section-header'><a href='#errors'>Errors</a></h1>
+<p>This method returns an error in the following circumstances:</p>
+
+<ul>
+<li>The total number of bytes to compress exceeds <code>2^32 - 1</code>.</li>
+<li><code>output</code> has length less than <code>max_compress_len(input.len())</code>.</li>
+</ul>
+</div><h4 id='method.compress_vec' class='method'><code>fn <a href='#method.compress_vec' class='fnname'>compress_vec</a>(&amp;mut self, input: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>&amp;[</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.slice.html'>]</a>) -&gt; <a class='type' href='../snap/type.Result.html' title='snap::Result'>Result</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>&gt;&gt;</code></h4>
+<div class='docblock'><p>Compresses all bytes in <code>input</code> into a freshly allocated <code>Vec</code>.</p>
+
+<p>This is just like the <code>compress</code> method, except it allocates a <code>Vec</code>
+with the right size for you. (This is intended to be a convenience
+method.)</p>
+
+<p>This method returns an error under the same circumstances that
+<code>compress</code> does.</p>
+</div></div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt>+</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../";
+        window.currentCrate = "snap";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../jquery.js"></script>
+    <script src="../main.js"></script>
+    
+    <script defer src="../search-index.js"></script>
+</body>
+</html>

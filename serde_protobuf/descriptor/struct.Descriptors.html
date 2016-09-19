@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `Descriptors` struct in crate `serde_protobuf`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, Descriptors">
+
+    <title>serde_protobuf::descriptor::Descriptors - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../index.html'>serde_protobuf</a>::<wbr><a href='index.html'>descriptor</a></p><script>window.sidebarCurrent = {name: 'Descriptors', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content struct">
+<h1 class='fqn'><span class='in-band'>Struct <a href='../index.html'>serde_protobuf</a>::<wbr><a href='index.html'>descriptor</a>::<wbr><a class='struct' href=''>Descriptors</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a id='src-791' class='srclink' href='../../src/serde_protobuf/descriptor.rs.html#160-168' title='goto source code'>[src]</a></span></h1>
+<pre class='rust struct'>pub struct Descriptors {
+    // some fields omitted
+}</pre><div class='docblock'><p>A registry for any number of protocol buffer descriptors.</p>
+</div><h2 id='methods'>Methods</h2><h3 class='impl'><span class='in-band'><code>impl <a class='struct' href='../../serde_protobuf/descriptor/struct.Descriptors.html' title='serde_protobuf::descriptor::Descriptors'>Descriptors</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-1016' class='srclink' href='../../src/serde_protobuf/descriptor.rs.html#280-397' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.new' class='method'><code>fn <a href='#method.new' class='fnname'>new</a>() -&gt; <a class='struct' href='../../serde_protobuf/descriptor/struct.Descriptors.html' title='serde_protobuf::descriptor::Descriptors'>Descriptors</a></code></h4>
+<div class='docblock'><p>Creates a new empty descriptor set.</p>
+</div><h4 id='method.from_proto' class='method'><code>fn <a href='#method.from_proto' class='fnname'>from_proto</a>(file_set_proto: &amp;<a class='struct' href='../../protobuf/descriptor/struct.FileDescriptorSet.html' title='protobuf::descriptor::FileDescriptorSet'>FileDescriptorSet</a>) -&gt; <a class='struct' href='../../serde_protobuf/descriptor/struct.Descriptors.html' title='serde_protobuf::descriptor::Descriptors'>Descriptors</a></code></h4>
+<div class='docblock'><p>Builds a descriptor set from the specified protocol buffer file descriptor set.</p>
+</div><h4 id='method.message_by_name' class='method'><code>fn <a href='#method.message_by_name' class='fnname'>message_by_name</a>(&amp;self, name: &amp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;&amp;<a class='struct' href='../../serde_protobuf/descriptor/struct.MessageDescriptor.html' title='serde_protobuf::descriptor::MessageDescriptor'>MessageDescriptor</a>&gt;</code></h4>
+<div class='docblock'><p>Looks up a message by its fully qualified name (i.e. <code>.foo.package.Message</code>).</p>
+</div><h4 id='method.enum_by_name' class='method'><code>fn <a href='#method.enum_by_name' class='fnname'>enum_by_name</a>(&amp;self, name: &amp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;&amp;<a class='struct' href='../../serde_protobuf/descriptor/struct.EnumDescriptor.html' title='serde_protobuf::descriptor::EnumDescriptor'>EnumDescriptor</a>&gt;</code></h4>
+<div class='docblock'><p>Looks up an enum by its fully qualified name (i.e. <code>.foo.package.Enum</code>).</p>
+</div><h4 id='method.add_file_set_proto' class='method'><code>fn <a href='#method.add_file_set_proto' class='fnname'>add_file_set_proto</a>(&amp;mut self, file_set_proto: &amp;<a class='struct' href='../../protobuf/descriptor/struct.FileDescriptorSet.html' title='protobuf::descriptor::FileDescriptorSet'>FileDescriptorSet</a>)</code></h4>
+<div class='docblock'><p>Adds all types defined in the specified protocol buffer file descriptor set to this
+registry.</p>
+</div><h4 id='method.add_file_proto' class='method'><code>fn <a href='#method.add_file_proto' class='fnname'>add_file_proto</a>(&amp;mut self, file_proto: &amp;<a class='struct' href='../../protobuf/descriptor/struct.FileDescriptorProto.html' title='protobuf::descriptor::FileDescriptorProto'>FileDescriptorProto</a>)</code></h4>
+<div class='docblock'><p>Adds all types defined in the specified protocol buffer file descriptor to this registry.</p>
+</div><h4 id='method.add_message_proto' class='method'><code>fn <a href='#method.add_message_proto' class='fnname'>add_message_proto</a>(&amp;mut self, path: &amp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>, message_proto: &amp;<a class='struct' href='../../protobuf/descriptor/struct.DescriptorProto.html' title='protobuf::descriptor::DescriptorProto'>DescriptorProto</a>)</code></h4>
+<div class='docblock'><p>Adds a message and all nested types within that message from the specified protocol buffer
+descriptor.</p>
+</div><h4 id='method.add_message' class='method'><code>fn <a href='#method.add_message' class='fnname'>add_message</a>(&amp;mut self, descriptor: <a class='struct' href='../../serde_protobuf/descriptor/struct.MessageDescriptor.html' title='serde_protobuf::descriptor::MessageDescriptor'>MessageDescriptor</a>)</code></h4>
+<div class='docblock'><p>Adds a single custom built message descriptor.</p>
+</div><h4 id='method.add_enum' class='method'><code>fn <a href='#method.add_enum' class='fnname'>add_enum</a>(&amp;mut self, descriptor: <a class='struct' href='../../serde_protobuf/descriptor/struct.EnumDescriptor.html' title='serde_protobuf::descriptor::EnumDescriptor'>EnumDescriptor</a>)</code></h4>
+<div class='docblock'><p>Adds a single custom built enum descriptor.</p>
+</div><h4 id='method.resolve_refs' class='method'><code>fn <a href='#method.resolve_refs' class='fnname'>resolve_refs</a>(&amp;mut self)</code></h4>
+<div class='docblock'><p>Resolves all internal descriptor type references, making them cheaper to follow.</p>
+</div></div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html' title='core::fmt::Debug'>Debug</a> for <a class='struct' href='../../serde_protobuf/descriptor/struct.Descriptors.html' title='serde_protobuf::descriptor::Descriptors'>Descriptors</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-782' class='srclink' href='../../src/serde_protobuf/descriptor.rs.html#159' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.fmt' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt' class='fnname'>fmt</a>(&amp;self, __arg_0: &amp;mut <a class='struct' href='https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html' title='core::fmt::Formatter'>Formatter</a>) -&gt; <a class='type' href='https://doc.rust-lang.org/nightly/core/fmt/type.Result.html' title='core::fmt::Result'>Result</a></code></h4>
+<div class='docblock'><p>Formats the value using the given formatter.</p>
+</div></div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt>+</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../";
+        window.currentCrate = "serde_protobuf";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../jquery.js"></script>
+    <script src="../../main.js"></script>
+    
+    <script defer src="../../search-index.js"></script>
+</body>
+</html>

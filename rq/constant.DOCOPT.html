@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `DOCOPT` constant in crate `rq`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, DOCOPT">
+
+    <title>rq::DOCOPT - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='index.html'>rq</a></p><script>window.sidebarCurrent = {name: 'DOCOPT', ty: 'constant', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content constant">
+<h1 class='fqn'><span class='in-band'><a href='index.html'>rq</a>::<wbr><a class='constant' href=''>DOCOPT</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a id='src-20' class='srclink' href='../src/rq/src/bin/rq.rs.html#22-96' title='goto source code'>[src]</a></span></h1>
+<pre class='rust const'>pub const DOCOPT: &amp;'static <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a><code> = </code><code>&quot;\nrq - record query v0.5.0\n\nA tool for manipulating data records.\n\nRecords are read from stdin, processed, and written to stdout.  The tool accepts\na query in the custom rq query language as its main command-line arguments.\n\nSee https://github.com/dflemstr/rq for in-depth documentation.\n\nUsage:\n  rq (--help|--version)\n  rq [-j|-a|-c|-h|-m|-p &lt;type&gt;|-y] [-J|-A &lt;type&gt;|-C|-H|-M|-P &lt;type&gt;|-Y] [--format &lt;format&gt;] [-l &lt;spec&gt;|-q] [--trace] [--] [&lt;query&gt;]\n  rq [-l &lt;spec&gt;|-q] [--trace] protobuf add &lt;schema&gt; [--base &lt;path&gt;]\n\nOptions:\n  --help\n      Show this screen.\n  --version\n      Show the program name and version.\n\n  -j, --input-json\n      Input is white-space separated JSON values (default).\n  -J, --output-json\n      Output should be formatted as JSON values (default).\n  -a, --input-avro\n      Input is an Apache Avro container file.\n  -A &lt;type&gt;, --output-avro &lt;type&gt;\n      Output should be formatted as Apache Avro messages.\n  -c, --input-cbor\n      Input is a series of CBOR values.\n  -C, --output-cbor\n      Output is a series of CBOR values.\n  -h, --input-hjson\n      Input is a HJSON document.\n  -H, --output-hjson\n      Output should be formatted as HJSON values.\n  -m, --input-message-pack\n      Input is formatted as MessagePack.\n  -M, --output-message-pack\n      Output should be formatted as MessagePack values.\n  -p &lt;type&gt;, --input-protobuf &lt;type&gt;\n      Input is a single protocol buffer object.  The argument refers to the\n      fully qualified name of the message type (including the leading \&#39;.\&#39;).\n  -P &lt;type&gt;, --output-protobuf &lt;type&gt;\n      Output should be formatted as protocol buffer objects.  The argument\n      refers to the fully qualified name of the message type (including the\n      leading \&#39;.\&#39;).\n  -y, --input-yaml\n      Input is a series of YAML documents.\n  -Y, --output-yaml\n      Output should be formatted as YAML documents.\n\n  --format &lt;format&gt;\n      Force stylistic output formatting.  Can be one of \&#39;compact\&#39; or\n      \&#39;readable\&#39; and the default is inferred from the terminal\n      environment.\n\n  &lt;query&gt;\n      A query indicating how to transform each record.\n\n  --base &lt;path&gt;\n      Directories are significant when dealing with protocol buffer\n      schemas.  This specifies the base directory used to normalize schema\n      file paths [default: .]\n\n  -l &lt;spec&gt;, --log &lt;spec&gt;\n      Configure logging using the supplied specification, in the format of\n      `env_logger`, for example `rq=info,duk=trace/[0-9]+ objects kept`.\n      See: https://doc.rust-lang.org/log/env_logger\n  --trace\n      Enable (back)trace output on error.\n  -q, --quiet\n      Log nothing.\n&quot;</code></pre></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt>+</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../";
+        window.currentCrate = "rq";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../jquery.js"></script>
+    <script src="../main.js"></script>
+    
+    <script defer src="../search-index.js"></script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+(function() {var implementors = {};
+implementors["serde"] = [];implementors["serde_yaml"] = ["impl <a class='trait' href='serde/de/trait.Error.html' title='serde::de::Error'>Error</a> for <a class='enum' href='serde_yaml/error/enum.Error.html' title='serde_yaml::error::Error'>Error</a>",];implementors["serde_cbor"] = ["impl <a class='trait' href='serde/de/trait.Error.html' title='serde::de::Error'>Error</a> for <a class='enum' href='serde_cbor/error/enum.Error.html' title='serde_cbor::error::Error'>Error</a>",];implementors["serde_test"] = ["impl <a class='trait' href='serde/de/trait.Error.html' title='serde::de::Error'>Error</a> for <a class='enum' href='serde_test/enum.Error.html' title='serde_test::Error'>Error</a>",];implementors["serde_hjson"] = ["impl <a class='trait' href='serde/de/trait.Error.html' title='serde::de::Error'>Error</a> for <a class='enum' href='serde_hjson/error/enum.Error.html' title='serde_hjson::error::Error'>Error</a>",];implementors["serde_json"] = ["impl <a class='trait' href='serde/de/trait.Error.html' title='serde::de::Error'>Error</a> for <a class='enum' href='serde_json/error/enum.Error.html' title='serde_json::error::Error'>Error</a>",];implementors["serde_json"] = ["impl <a class='trait' href='serde/de/trait.Error.html' title='serde::de::Error'>Error</a> for <a class='enum' href='serde_json/error/enum.Error.html' title='serde_json::error::Error'>Error</a>",];implementors["serde_avro"] = ["impl <a class='trait' href='serde/de/trait.Error.html' title='serde::de::Error'>Error</a> for <a class='struct' href='serde_avro/error/struct.Error.html' title='serde_avro::error::Error'>Error</a>",];implementors["serde_protobuf"] = ["impl <a class='trait' href='serde/de/trait.Error.html' title='serde::de::Error'>Error</a> for <a class='enum' href='serde_protobuf/error/enum.Error.html' title='serde_protobuf::error::Error'>Error</a>",];
+
+            if (window.register_implementors) {
+                window.register_implementors(implementors);
+            } else {
+                window.pending_implementors = implementors;
+            }
+        
+})()

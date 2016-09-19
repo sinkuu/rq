@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `FieldType` enum in crate `serde_protobuf`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, FieldType">
+
+    <title>serde_protobuf::descriptor::FieldType - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../index.html'>serde_protobuf</a>::<wbr><a href='index.html'>descriptor</a></p><script>window.sidebarCurrent = {name: 'FieldType', ty: 'enum', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content enum">
+<h1 class='fqn'><span class='in-band'>Enum <a href='../index.html'>serde_protobuf</a>::<wbr><a href='index.html'>descriptor</a>::<wbr><a class='enum' href=''>FieldType</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a id='src-887' class='srclink' href='../../src/serde_protobuf/descriptor.rs.html#219-240' title='goto source code'>[src]</a></span></h1>
+<pre class='rust enum'>pub enum FieldType&lt;'a&gt; {
+    UnresolvedMessage(&amp;'a <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>),
+    UnresolvedEnum(&amp;'a <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>),
+    Double,
+    Float,
+    Int64,
+    UInt64,
+    Int32,
+    Fixed64,
+    Fixed32,
+    Bool,
+    String,
+    Group,
+    Message(&amp;'a <a class='struct' href='../../serde_protobuf/descriptor/struct.MessageDescriptor.html' title='serde_protobuf::descriptor::MessageDescriptor'>MessageDescriptor</a>),
+    Bytes,
+    UInt32,
+    Enum(&amp;'a <a class='struct' href='../../serde_protobuf/descriptor/struct.EnumDescriptor.html' title='serde_protobuf::descriptor::EnumDescriptor'>EnumDescriptor</a>),
+    SFixed32,
+    SFixed64,
+    SInt32,
+    SInt64,
+}</pre><div class='docblock'><p>The externally visible type of a field.</p>
+
+<p>This type representation borrows references to any referenced descriptors.</p>
+</div><h2 class='variants'>Variants</h2>
+<span id='variant.UnresolvedMessage' class='variant'><code>UnresolvedMessage(&amp;'a <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>)</code></span><span id='variant.UnresolvedEnum' class='variant'><code>UnresolvedEnum(&amp;'a <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a>)</code></span><span id='variant.Double' class='variant'><code>Double</code></span><span id='variant.Float' class='variant'><code>Float</code></span><span id='variant.Int64' class='variant'><code>Int64</code></span><span id='variant.UInt64' class='variant'><code>UInt64</code></span><span id='variant.Int32' class='variant'><code>Int32</code></span><span id='variant.Fixed64' class='variant'><code>Fixed64</code></span><span id='variant.Fixed32' class='variant'><code>Fixed32</code></span><span id='variant.Bool' class='variant'><code>Bool</code></span><span id='variant.String' class='variant'><code>String</code></span><span id='variant.Group' class='variant'><code>Group</code></span><span id='variant.Message' class='variant'><code>Message(&amp;'a <a class='struct' href='../../serde_protobuf/descriptor/struct.MessageDescriptor.html' title='serde_protobuf::descriptor::MessageDescriptor'>MessageDescriptor</a>)</code></span><span id='variant.Bytes' class='variant'><code>Bytes</code></span><span id='variant.UInt32' class='variant'><code>UInt32</code></span><span id='variant.Enum' class='variant'><code>Enum(&amp;'a <a class='struct' href='../../serde_protobuf/descriptor/struct.EnumDescriptor.html' title='serde_protobuf::descriptor::EnumDescriptor'>EnumDescriptor</a>)</code></span><span id='variant.SFixed32' class='variant'><code>SFixed32</code></span><span id='variant.SFixed64' class='variant'><code>SFixed64</code></span><span id='variant.SInt32' class='variant'><code>SInt32</code></span><span id='variant.SInt64' class='variant'><code>SInt64</code></span><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><span class='in-band'><code>impl&lt;'a&gt; <a class='trait' href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html' title='core::fmt::Debug'>Debug</a> for <a class='enum' href='../../serde_protobuf/descriptor/enum.FieldType.html' title='serde_protobuf::descriptor::FieldType'>FieldType</a>&lt;'a&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a id='src-858' class='srclink' href='../../src/serde_protobuf/descriptor.rs.html#218' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.fmt' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt' class='fnname'>fmt</a>(&amp;self, __arg_0: &amp;mut <a class='struct' href='https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html' title='core::fmt::Formatter'>Formatter</a>) -&gt; <a class='type' href='https://doc.rust-lang.org/nightly/core/fmt/type.Result.html' title='core::fmt::Result'>Result</a></code></h4>
+<div class='docblock'><p>Formats the value using the given formatter.</p>
+</div></div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt>+</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../";
+        window.currentCrate = "serde_protobuf";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../../jquery.js"></script>
+    <script src="../../main.js"></script>
+    
+    <script defer src="../../search-index.js"></script>
+</body>
+</html>

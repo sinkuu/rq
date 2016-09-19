@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `Error` enum in crate `snap`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, Error">
+
+    <title>snap::Error - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='index.html'>snap</a></p><script>window.sidebarCurrent = {name: 'Error', ty: 'enum', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content enum">
+<h1 class='fqn'><span class='in-band'>Enum <a href='index.html'>snap</a>::<wbr><a class='enum' href=''>Error</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a id='src-465' class='srclink' href='../src/snap/error.rs.html#78-187' title='goto source code'>[src]</a></span></h1>
+<pre class='rust enum'>pub enum Error {
+    TooBig {
+        given: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>,
+        max: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>,
+    },
+    BufferTooSmall {
+        given: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>,
+        min: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>,
+    },
+    Empty,
+    Header,
+    HeaderMismatch {
+        expected_len: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>,
+        got_len: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>,
+    },
+    Literal {
+        len: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>,
+        src_len: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>,
+        dst_len: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>,
+    },
+    CopyRead {
+        len: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>,
+        src_len: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>,
+    },
+    CopyWrite {
+        len: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>,
+        dst_len: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>,
+    },
+    Offset {
+        offset: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>,
+        dst_pos: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>,
+    },
+    StreamHeader {
+        byte: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>,
+    },
+    StreamHeaderMismatch {
+        bytes: <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>&gt;,
+    },
+    UnsupportedChunkType {
+        byte: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>,
+    },
+    UnsupportedChunkLength {
+        len: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a>,
+        header: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a>,
+    },
+    Checksum {
+        expected: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>,
+        got: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a>,
+    },
+}</pre><div class='docblock'><p>Error describes all the possible errors that may occur during Snappy
+compression or decompression.</p>
+
+<p>Note that it&#39;s unlikely that you&#39;ll need to care about the specific error
+reported since all of them indicate a corrupt Snappy data or a limitation
+that cannot be worked around. Therefore,
+<code>From&lt;snap::Error&gt; for std::io::Error</code> is provided so that any Snappy
+errors will be converted to a <code>std::io::Error</code> automatically when using
+<code>try!</code>.</p>
+</div><h2 class='variants'>Variants</h2>
+<span id='variant.TooBig' class='variant'><code>TooBig</code></span><div class='docblock'><p>This error occurs when the given input is too big. This can happen
+during compression or decompression.</p>
+</div><h3 class='fields'>Fields</h3>
+
+                           <table><tr><td id='variant.TooBig.field.given'><code>given:&nbsp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a></code></td><td><div class='docblock'><p>The size of the given input.</p>
+</div></td></tr><tr><td id='variant.TooBig.field.max'><code>max:&nbsp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a></code></td><td><div class='docblock'><p>The maximum allowed size of an input buffer.</p>
+</div></td></tr></table><span id='variant.BufferTooSmall' class='variant'><code>BufferTooSmall</code></span><div class='docblock'><p>This error occurs when the given buffer is too small to contain the
+maximum possible compressed bytes or the total number of decompressed
+bytes.</p>
+</div><h3 class='fields'>Fields</h3>
+
+                           <table><tr><td id='variant.BufferTooSmall.field.given'><code>given:&nbsp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a></code></td><td><div class='docblock'><p>The size of the given output buffer.</p>
+</div></td></tr><tr><td id='variant.BufferTooSmall.field.min'><code>min:&nbsp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a></code></td><td><div class='docblock'><p>The minimum size of the output buffer.</p>
+</div></td></tr></table><span id='variant.Empty' class='variant'><code>Empty</code></span><div class='docblock'><p>This error occurs when trying to decompress a zero length buffer.</p>
+</div><span id='variant.Header' class='variant'><code>Header</code></span><div class='docblock'><p>This error occurs when an invalid header is found during decompression.</p>
+</div><span id='variant.HeaderMismatch' class='variant'><code>HeaderMismatch</code></span><div class='docblock'><p>This error occurs when there is a mismatch between the number of
+decompressed bytes reported in the header and the number of
+actual decompressed bytes. In this error case, the number of actual
+decompressed bytes is always less than the number reported in the
+header.</p>
+</div><h3 class='fields'>Fields</h3>
+
+                           <table><tr><td id='variant.HeaderMismatch.field.expected_len'><code>expected_len:&nbsp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a></code></td><td><div class='docblock'><p>The total number of decompressed bytes expected (i.e., the header
+value).</p>
+</div></td></tr><tr><td id='variant.HeaderMismatch.field.got_len'><code>got_len:&nbsp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a></code></td><td><div class='docblock'><p>The total number of actual decompressed bytes.</p>
+</div></td></tr></table><span id='variant.Literal' class='variant'><code>Literal</code></span><div class='docblock'><p>This error occurs during decompression when there was a problem
+reading a literal.</p>
+</div><h3 class='fields'>Fields</h3>
+
+                           <table><tr><td id='variant.Literal.field.len'><code>len:&nbsp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a></code></td><td><div class='docblock'><p>The expected length of the literal.</p>
+</div></td></tr><tr><td id='variant.Literal.field.src_len'><code>src_len:&nbsp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a></code></td><td><div class='docblock'><p>The number of remaining bytes in the compressed bytes.</p>
+</div></td></tr><tr><td id='variant.Literal.field.dst_len'><code>dst_len:&nbsp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a></code></td><td><div class='docblock'><p>The number of remaining slots in the decompression buffer.</p>
+</div></td></tr></table><span id='variant.CopyRead' class='variant'><code>CopyRead</code></span><div class='docblock'><p>This error occurs during decompression when there was a problem
+reading a copy.</p>
+</div><h3 class='fields'>Fields</h3>
+
+                           <table><tr><td id='variant.CopyRead.field.len'><code>len:&nbsp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a></code></td><td><div class='docblock'><p>The expected length of the copy (as encoded in the compressed
+bytes).</p>
+</div></td></tr><tr><td id='variant.CopyRead.field.src_len'><code>src_len:&nbsp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a></code></td><td><div class='docblock'><p>The number of remaining bytes in the compressed bytes.</p>
+</div></td></tr></table><span id='variant.CopyWrite' class='variant'><code>CopyWrite</code></span><div class='docblock'><p>This error occurs during decompression when there was a problem
+writing a copy to the decompression buffer.</p>
+</div><h3 class='fields'>Fields</h3>
+
+                           <table><tr><td id='variant.CopyWrite.field.len'><code>len:&nbsp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a></code></td><td><div class='docblock'><p>The length of the copy (i.e., the total number of bytes to be
+produced by this copy in the decompression buffer).</p>
+</div></td></tr><tr><td id='variant.CopyWrite.field.dst_len'><code>dst_len:&nbsp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a></code></td><td><div class='docblock'><p>The number of remaining bytes in the decompression buffer.</p>
+</div></td></tr></table><span id='variant.Offset' class='variant'><code>Offset</code></span><div class='docblock'><p>This error occurs during decompression when an invalid copy offset
+is found. An offset is invalid if it is zero or if it is out of bounds.</p>
+</div><h3 class='fields'>Fields</h3>
+
+                           <table><tr><td id='variant.Offset.field.offset'><code>offset:&nbsp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a></code></td><td><div class='docblock'><p>The offset that was read.</p>
+</div></td></tr><tr><td id='variant.Offset.field.dst_pos'><code>dst_pos:&nbsp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a></code></td><td><div class='docblock'><p>The current position in the decompression buffer. If the offset is
+non-zero, then the offset must be greater than this position.</p>
+</div></td></tr></table><span id='variant.StreamHeader' class='variant'><code>StreamHeader</code></span><div class='docblock'><p>This error occurs when a stream header chunk type was expected but got
+a different chunk type.
+This error only occurs when reading a Snappy frame formatted stream.</p>
+</div><h3 class='fields'>Fields</h3>
+
+                           <table><tr><td id='variant.StreamHeader.field.byte'><code>byte:&nbsp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a></code></td><td><div class='docblock'><p>The chunk type byte that was read.</p>
+</div></td></tr></table><span id='variant.StreamHeaderMismatch' class='variant'><code>StreamHeaderMismatch</code></span><div class='docblock'><p>This error occurs when the magic stream headers bytes do not match
+what is expected.
+This error only occurs when reading a Snappy frame formatted stream.</p>
+</div><h3 class='fields'>Fields</h3>
+
+                           <table><tr><td id='variant.StreamHeaderMismatch.field.bytes'><code>bytes:&nbsp;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a>&gt;</code></td><td><div class='docblock'><p>The bytes that were read.</p>
+</div></td></tr></table><span id='variant.UnsupportedChunkType' class='variant'><code>UnsupportedChunkType</code></span><div class='docblock'><p>This error occurs when an unsupported chunk type is seen.
+This error only occurs when reading a Snappy frame formatted stream.</p>
+</div><h3 class='fields'>Fields</h3>
+
+                           <table><tr><td id='variant.UnsupportedChunkType.field.byte'><code>byte:&nbsp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u8.html'>u8</a></code></td><td><div class='docblock'><p>The chunk type byte that was read.</p>
+</div></td></tr></table><span id='variant.UnsupportedChunkLength' class='variant'><code>UnsupportedChunkLength</code></span><div class='docblock'><p>This error occurs when trying to read a chunk with length greater than
+that supported by this library when reading a Snappy frame formatted
+stream.
+This error only occurs when reading a Snappy frame formatted stream.</p>
+</div><h3 class='fields'>Fields</h3>
+
+                           <table><tr><td id='variant.UnsupportedChunkLength.field.len'><code>len:&nbsp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u64.html'>u64</a></code></td><td><div class='docblock'><p>The length of the chunk encountered.</p>
+</div></td></tr><tr><td id='variant.UnsupportedChunkLength.field.header'><code>header:&nbsp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></td><td><div class='docblock'><p>True when this error occured while reading the stream header.</p>
+</div></td></tr></table><span id='variant.Checksum' class='variant'><code>Checksum</code></span><div class='docblock'><p>This error occurs when a checksum validity check fails.
+This error only occurs when reading a Snappy frame formatted stream.</p>
+</div><h3 class='fields'>Fields</h3>
+
+                           <table><tr><td id='variant.Checksum.field.expected'><code>expected:&nbsp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a></code></td><td><div class='docblock'><p>The expected checksum read from the stream.</p>
+</div></td></tr><tr><td id='variant.Checksum.field.got'><code>got:&nbsp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.u32.html'>u32</a></code></td><td><div class='docblock'><p>The computed checksum.</p>
+</div></td></tr></table><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html' title='core::fmt::Debug'>Debug</a> for <a class='enum' href='../snap/enum.Error.html' title='snap::Error'>Error</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-425' class='srclink' href='../src/snap/error.rs.html#77' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.fmt' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt' class='fnname'>fmt</a>(&amp;self, __arg_0: &amp;mut <a class='struct' href='https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html' title='core::fmt::Formatter'>Formatter</a>) -&gt; <a class='type' href='https://doc.rust-lang.org/nightly/core/fmt/type.Result.html' title='core::fmt::Result'>Result</a></code></h4>
+<div class='docblock'><p>Formats the value using the given formatter.</p>
+</div></div><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/cmp/trait.Eq.html' title='core::cmp::Eq'>Eq</a> for <a class='enum' href='../snap/enum.Error.html' title='snap::Error'>Error</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-505' class='srclink' href='../src/snap/error.rs.html#195' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'></div><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html' title='core::cmp::PartialEq'>PartialEq</a> for <a class='enum' href='../snap/enum.Error.html' title='snap::Error'>Error</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-506' class='srclink' href='../src/snap/error.rs.html#199-255' title='goto source code'>[src]</a></span></h3>
+<div class='docblock'><p>This implementation of <code>PartialEq</code> returns <code>false</code> when comparing two
+errors whose underlying type is <code>std::io::Error</code>.</p>
+</div><div class='impl-items'><h4 id='method.eq' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#tymethod.eq' class='fnname'>eq</a>(&amp;self, other: &amp;<a class='enum' href='../snap/enum.Error.html' title='snap::Error'>Error</a>) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></h4>
+<div class='docblock'><p>This method tests for <code>self</code> and <code>other</code> values to be equal, and is used by <code>==</code>. <a href="https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#tymethod.eq">Read more</a></p>
+</div><h4 id='method.ne' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/cmp/trait.PartialEq.html#method.ne' class='fnname'>ne</a>(&amp;self, other: &amp;Rhs) -&gt; <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code><div class='since' title='Stable since Rust version 1.0.0'>1.0.0</div></h4>
+<div class='docblock'><p>This method tests for <code>!=</code>.</p>
+</div></div><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/std/error/trait.Error.html' title='std::error::Error'>Error</a> for <a class='enum' href='../snap/enum.Error.html' title='snap::Error'>Error</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-559' class='srclink' href='../src/snap/error.rs.html#257-293' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.description' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/std/error/trait.Error.html#tymethod.description' class='fnname'>description</a>(&amp;self) -&gt; &amp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.str.html'>str</a></code></h4>
+<div class='docblock'><p>A short description of the error. <a href="https://doc.rust-lang.org/nightly/std/error/trait.Error.html#tymethod.description">Read more</a></p>
+</div><h4 id='method.cause' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/std/error/trait.Error.html#method.cause' class='fnname'>cause</a>(&amp;self) -&gt; <a class='enum' href='https://doc.rust-lang.org/nightly/core/option/enum.Option.html' title='core::option::Option'>Option</a>&lt;&amp;<a class='trait' href='https://doc.rust-lang.org/nightly/std/error/trait.Error.html' title='std::error::Error'>Error</a>&gt;</code></h4>
+<div class='docblock'><p>The lower-level cause of this error, if any.</p>
+</div></div><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/fmt/trait.Display.html' title='core::fmt::Display'>Display</a> for <a class='enum' href='../snap/enum.Error.html' title='snap::Error'>Error</a></code></span><span class='out-of-band'><div class='ghost'></div><a id='src-564' class='srclink' href='../src/snap/error.rs.html#295-360' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.fmt-1' class='method'><code>fn <a href='https://doc.rust-lang.org/nightly/core/fmt/trait.Display.html#tymethod.fmt' class='fnname'>fmt</a>(&amp;self, f: &amp;mut <a class='struct' href='https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html' title='core::fmt::Formatter'>Formatter</a>) -&gt; <a class='type' href='https://doc.rust-lang.org/nightly/core/fmt/type.Result.html' title='core::fmt::Result'>Result</a></code></h4>
+<div class='docblock'><p>Formats the value using the given formatter.</p>
+</div></div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt>+</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../";
+        window.currentCrate = "snap";
+        window.playgroundUrl = "";
+    </script>
+    <script src="../jquery.js"></script>
+    <script src="../main.js"></script>
+    
+    <script defer src="../search-index.js"></script>
+</body>
+</html>
